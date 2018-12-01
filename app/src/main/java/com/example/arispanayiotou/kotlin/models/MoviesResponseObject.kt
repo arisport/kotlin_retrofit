@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by arispanayiotou on 01/12/2018
  */
-class MoviesResponseObject() {
+class MoviesResponseObject {
 
     @Expose
     val status: String? = null
@@ -25,5 +25,6 @@ class MoviesResponseObject() {
     val results: MutableList<MovieModel>? = null
 
     var error: Throwable? = null
+    var networkCodeErrorModel: NetworkCodeErrorModel? = null
 
 }
