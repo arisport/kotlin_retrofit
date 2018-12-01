@@ -1,6 +1,6 @@
-package com.example.arispanayiotou.kotlin
+package com.example.arispanayiotou.kotlin.utilities
 
-import com.example.arispanayiotou.kotlin.utilities.MoviesInterceptor
+import com.example.arispanayiotou.kotlin.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,12 +14,12 @@ class RetrofitClientInstance {
 
     companion object {
 
-        private val BASE_URL = "http://www.omdbapi.com/"
+        private val BASE_URL = "https://api.nytimes.com/svc/movies/v2/reviews/"
 
         fun getRetrofitInstance(): Retrofit {
 
 
-            val apiInterceptor = MoviesInterceptor("b0766a0b", 0)
+            val apiInterceptor = MoviesInterceptor("8faac71fe7d3460081c278c3ab69c0a5", 0)
 
             val client: OkHttpClient =  OkHttpClient().newBuilder()
                 .addInterceptor(apiInterceptor)

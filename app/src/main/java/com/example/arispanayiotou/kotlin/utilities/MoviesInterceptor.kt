@@ -13,7 +13,7 @@ class MoviesInterceptor (private val apiKey: String, private val cacheDuration: 
         val request = chain.request()
 
         val url = request.url().newBuilder()
-            .addQueryParameter("apikey", apiKey)
+            .addQueryParameter("api-key", apiKey)
 //            .addQueryParameter("format", "json")
             .build()
 
