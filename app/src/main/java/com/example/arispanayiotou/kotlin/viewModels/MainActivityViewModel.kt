@@ -14,16 +14,16 @@ import com.example.arispanayiotou.kotlin.repositories.MovieRepository
 class MainActivityViewModel : ViewModel() {
 
 
-    private var apiResponse: MediatorLiveData<MoviesResponseObject> = MediatorLiveData()
+    private var moviesResponse: MediatorLiveData<MoviesResponseObject> = MediatorLiveData()
     private var movieRepo: MovieRepository = MovieRepository()
 
     fun getMovies(): LiveData<MoviesResponseObject> {
 
-        apiResponse.addSource(movieRepo.getMovies()) {
-            apiResponse.value = it
+        moviesResponse.addSource(movieRepo.getMovies()) {
+            moviesResponse.value = it
         }
 
-        return apiResponse
+        return moviesResponse
     }
 
 }

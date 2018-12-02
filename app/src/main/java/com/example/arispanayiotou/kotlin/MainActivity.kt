@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import com.example.arispanayiotou.kotlin.adapter.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import com.example.arispanayiotou.kotlin.models.MovieModel
-import com.example.arispanayiotou.kotlin.viewModels.MoviesViewModel
 import android.widget.Toast
 import com.example.arispanayiotou.kotlin.models.MoviesResponseObject
+import com.example.arispanayiotou.kotlin.models.network.AbstractResponseObject
+import com.example.arispanayiotou.kotlin.models.network.ServerErrorModel
 import com.example.arispanayiotou.kotlin.viewModels.MainActivityViewModel
 
 
@@ -21,36 +21,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val model = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
-//        model.getMovies().observe(this, Observer<MutableList<MovieModel>> {
-//            recyclerview.adapter = MovieAdapter(it!!)
-//        })
-
 
         val viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
-        viewModel.getMovies().observe(this, Observer<MoviesResponseObject> { apiResponse ->
-            if (apiResponse == null) {
+        viewModel.getMovies().observe(this, Observer<MoviesResponseObject> {
+
+            if (it == null) {
                 // handle error here
                 return@Observer
             }
-            if (apiResponse.error == null) {
-                // call is successful
-                if (apiResponse.networkCodeErrorModel == null)
-                    recyclerview.adapter = MovieAdapter(apiResponse.results!!)
-                else
-                    Toast.makeText(this@MainActivity, "Error Message " + apiResponse.networkCodeErrorModel?.errorMessage
-                        + " Error code " + apiResponse.networkCodeErrorModel?.networkErrorCode, Toast.LENGTH_SHORT).show()
-            } else {
-                // call failed.
-                val e = apiResponse.error
-                Toast.makeText(this@MainActivity, "Error is " + e?.message, Toast.LENGTH_SHORT).show()
-                Log.e("TEST", "Error is " + e?.getLocalizedMessage())
 
+            when (it.errorType) {
+                AbstractResponseObject.ErrorType.NONE -> recyclerview.adapter = MovieAdapter(it.results!!)
+                AbstractResponseObject.ErrorType.SERVER_ERROR -> showServerErrorMessage(it.serverErrorModel)
+                AbstractResponseObject.ErrorType.NETWORK_ERROR -> showNetworkErrorMessage(it.networkError)
             }
+
+
         })
 
 
+    }
+
+    private fun showNetworkErrorMessage(networkError: Throwable?) {
+        Toast.makeText(this@MainActivity, "Error is " + networkError?.message, Toast.LENGTH_SHORT).show()
+        Log.e("TEST", "Error is " + networkError?.localizedMessage)
+    }
+
+    private fun showServerErrorMessage(serverErrorModel: ServerErrorModel?) {
+        Toast.makeText(
+            this@MainActivity,
+            "Error Message " + serverErrorModel?.errorMessage
+                    + " Error code " + serverErrorModel?.networkErrorCode,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 }

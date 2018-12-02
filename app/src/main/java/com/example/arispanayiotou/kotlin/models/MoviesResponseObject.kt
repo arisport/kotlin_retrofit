@@ -1,5 +1,6 @@
 package com.example.arispanayiotou.kotlin.models
 
+import com.example.arispanayiotou.kotlin.models.network.AbstractResponseObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -7,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by arispanayiotou on 01/12/2018
  */
-class MoviesResponseObject {
+class MoviesResponseObject : AbstractResponseObject() {
 
     @Expose
     val status: String? = null
@@ -24,7 +25,5 @@ class MoviesResponseObject {
     @Expose
     val results: MutableList<MovieModel>? = null
 
-    var error: Throwable? = null
-    var networkCodeErrorModel: NetworkCodeErrorModel? = null
 
 }

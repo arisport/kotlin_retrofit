@@ -37,7 +37,7 @@ class MovieAdapter(val movieObject: MutableList<MovieModel>) : RecyclerView.Adap
 
             itemView.moviePoster.loadImageViewWithGlide(movieObject[adapterPosition].multimedia?.src!!)
             itemView.movieTitle.text = movieObject[adapterPosition].displayTitle
-            itemView.moviePlot.text = movieObject[0].summaryShort
+            itemView.moviePlot.text = movieObject[adapterPosition].summaryShort
         }
 
     }
