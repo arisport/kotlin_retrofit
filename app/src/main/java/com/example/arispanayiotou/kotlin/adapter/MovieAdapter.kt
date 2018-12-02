@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.arispanayiotou.kotlin.R
 import com.example.arispanayiotou.kotlin.models.MovieModel
-import com.example.arispanayiotou.kotlin.utilities.loadImageViewWithGlide
+import com.example.arispanayiotou.kotlin.utilities.extensions.loadImageViewWithGlide
 import kotlinx.android.synthetic.main.grid_cell.view.*
 
 /**

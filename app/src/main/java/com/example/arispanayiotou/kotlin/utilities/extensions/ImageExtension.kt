@@ -1,4 +1,4 @@
-package com.example.arispanayiotou.kotlin.utilities
+package com.example.arispanayiotou.kotlin.utilities.extensions
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

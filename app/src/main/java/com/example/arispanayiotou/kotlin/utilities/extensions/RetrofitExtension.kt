@@ -1,4 +1,4 @@
-package com.example.arispanayiotou.kotlin.utilities
+package com.example.arispanayiotou.kotlin.utilities.extensions
 
 import retrofit2.Call
 import retrofit2.Callback

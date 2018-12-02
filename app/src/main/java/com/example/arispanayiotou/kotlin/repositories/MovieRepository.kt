@@ -6,7 +6,7 @@ import com.example.arispanayiotou.kotlin.utilities.RetrofitClientInstance
 import android.arch.lifecycle.MutableLiveData
 import com.example.arispanayiotou.kotlin.models.network.AbstractResponseObject
 import com.example.arispanayiotou.kotlin.models.network.ServerErrorModel
-import com.example.arispanayiotou.kotlin.utilities.enqueueExtension
+import com.example.arispanayiotou.kotlin.utilities.extensions.enqueueExtension
 
 
 /**

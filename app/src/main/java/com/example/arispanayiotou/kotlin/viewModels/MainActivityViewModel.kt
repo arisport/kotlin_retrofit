@@ -3,7 +3,6 @@ package com.example.arispanayiotou.kotlin.viewModels
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import com.example.arispanayiotou.kotlin.models.MoviesResponseObject
 import com.example.arispanayiotou.kotlin.repositories.MovieRepository
 
